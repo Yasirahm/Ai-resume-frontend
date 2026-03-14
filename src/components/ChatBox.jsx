@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import axios from "axios"
 import FileUpload from "./FileUpload"
 import Loader from "./Loader"
+import Footer from "./Footer"
 
 function ChatBox(){
 
@@ -111,81 +112,118 @@ function ChatBox(){
 
   }
 
-  return(
+ return (
 
-    <div className="flex flex-col items-center gap-6 w-full">
+<div className="min-h-screen bg-slate-950 text-white">
 
-      <FileUpload setFile={setFile} />
+{/* HERO */}
 
-      <button
-        onClick={analyzeResume}
-        className="bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-lg text-white transition"
-      >
-        Analyze Resume
-      </button>
+<div className="text-center pt-24 pb-10 px-6">
 
-      {loading && <Loader />}
+<h1 className="text-4xl font-bold mb-4">
+AI Resume Analyzer
+</h1>
 
-      {!loading && result && (
+<p className="text-gray-400 max-w-xl mx-auto">
+Upload your resume and instantly discover your skills,
+career opportunities and improvements using AI.
+</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mt-8">
+</div>
 
-          <Card
-            title="Detected Skills"
-            content={sections.skills}
-            color="text-green-400"
-            emoji="🧠"
-          />
+{/* UPLOAD CARD */}
 
-          <Card
-            title="Key Details"
-            content={sections.details}
-            color="text-blue-400"
-            emoji="📄"
-          />
+<div className="flex justify-center px-4">
 
-          <Card
-            title="Suggested Jobs"
-            content={sections.jobs}
-            color="text-purple-400"
-            emoji="💼"
-          />
+<div className="bg-slate-900 border border-slate-800 p-10 rounded-2xl shadow-xl w-full max-w-md text-center">
 
-          <Card
-            title="Resume Weaknesses"
-            content={sections.weakness}
-            color="text-red-400"
-            emoji="⚠️"
-          />
+<FileUpload setFile={setFile} />
 
-          <Card
-            title="Improvement Suggestions"
-            content={sections.improve}
-            color="text-yellow-400"
-            emoji="🚀"
-          />
+<button
+onClick={analyzeResume}
+className="bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-lg text-white transition mt-6 w-full"
+>
+Analyze Resume
+</button>
 
-          <Card
-            title="Missing Skills"
-            content={sections.missing}
-            color="text-pink-400"
-            emoji="📚"
-          />
+</div>
 
-          <Card
-            title="ATS Score"
-            content={sections.score}
-            color="text-emerald-400"
-            emoji="⭐"
-          />
+</div>
 
-        </div>
+{/* LOADER */}
 
-      )}
+{loading && (
+<div className="flex justify-center mt-10">
+<Loader />
+</div>
+)}
 
-    </div>
+{/* RESULT */}
 
-  )
+{!loading && result && (
+
+<div className="mt-16 px-6">
+
+<h2 className="text-2xl font-semibold text-center mb-10">
+AI Resume Analysis
+</h2>
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+<Card title="Detected Skills" content={sections.skills} />
+<Card title="Key Details" content={sections.details} />
+<Card title="Suggested Jobs" content={sections.jobs} />
+<Card title="Resume Weaknesses" content={sections.weakness} />
+<Card title="Improvement Suggestions" content={sections.improve} />
+<Card title="Missing Skills" content={sections.missing} />
+<Card title="ATS Score" content={sections.score} />
+
+</div>
+
+</div>
+
+)}
+
+{/* FEATURES */}
+
+<div className="mt-24 px-6">
+
+<h2 className="text-2xl text-center mb-10 font-semibold">
+Why Use AI Resume Analyzer
+</h2>
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+<div className="bg-slate-900 p-6 rounded-xl">
+<h3 className="font-semibold mb-2">Skill Detection</h3>
+<p className="text-gray-400 text-sm">
+AI automatically detects technical and professional skills from your resume.
+</p>
+</div>
+
+<div className="bg-slate-900 p-6 rounded-xl">
+<h3 className="font-semibold mb-2">Job Suggestions</h3>
+<p className="text-gray-400 text-sm">
+Discover job roles that match your experience and skills.
+</p>
+</div>
+
+<div className="bg-slate-900 p-6 rounded-xl">
+<h3 className="font-semibold mb-2">Resume Improvement</h3>
+<p className="text-gray-400 text-sm">
+Get AI recommendations to improve your resume and increase your ATS score.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<Footer />
+
+</div>
+
+)
 
 }
 
