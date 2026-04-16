@@ -25,7 +25,7 @@ function ChatBox(){
       setLoading(true)
 
       const res = await axios.post(
-        "https://ai-resume-rdva.onrender.com/api/ai/analyze",
+        "https://kashbit.in/api/ai/analyze",
         formData
       )
 
